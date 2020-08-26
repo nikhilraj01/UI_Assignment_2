@@ -1,0 +1,43 @@
+<html>
+<head>
+  <title>Assignment 2</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="main.css">
+  <script src="main.js"></script>
+</head>
+
+<body>
+<img src="w3 logo.jpg" width=25%>
+<div class="topnav" id="myTopnav">
+  <a href="index.html">Home</a>
+  <a href="page_html.html">HTML</a>
+  <a href="page_css.html">CSS</a>
+  <a href="page_javascript.html" class="active">Javascript</a>
+  <a href="page_quiz.html">Quiz</a>
+  <a href="javascript:void(0);" class="icon" onclick="menuBtn()">
+    <i class="fa fa-bars"></i>
+  </a>
+</div>
+<div class="tab">
+  <button class="tablinks active" onclick="openPage(event, 'home')" id="defaultOpen">JS HOME</button>
+  <button class="tablinks" onclick="openPage(event, 'intro')" >JS Introduction</button>
+  <button class="tablinks" onclick="openPage(event, 'whereTo')">JS Where To</button>
+  <button class="tablinks" onclick="openPage(event, 'output')">JS Output</button>
+</div>
+
+<div id="home" class="tabcontent" style="display: block;" >
+  <h1>JavaScript Tutorial</h1>
+</div>
+
+<div id="intro" class="tabcontent">
+  <h1>JavaScript Introduction</h1>
+</div>
+
+<div id="whereTo" class="tabcontent">
+  <h1>JavaScript Where To</h1>
+</div>
+
+<div id="output" class="tabcontent">
+  <h1>JavaScript Output</h1>
+</div>
+</body>
