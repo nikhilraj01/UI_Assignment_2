@@ -1,0 +1,41 @@
+<html>
+<head>
+  <title>Assignment 2</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../main.css">
+  <script src="../quiz.js"></script>
+</head>
+
+<body>
+<img src="../w3 logo.jpg" width=25%>
+<div class="topnav" id="myTopnav">
+  <a href="../index.html">Home</a>
+  <a href="../page_html.html">HTML</a>
+  <a href="../page_css.html"  >CSS</a>
+  <a href="../page_javascript.html">Javascript</a>
+  <a href="../page_quiz.html" class="active">Quiz</a>
+  <a href="javascript:void(0);" class="icon" onclick="menuBtn()">
+    <i class="fa fa-bars"></i>
+  </a>
+</div>
+
+<div class="grid">
+    <div id="quiz">
+        <h1>Quiz in CSS</h1>
+        <hr style="margin-bottom: 20px">
+
+        <p id="question"></p>
+
+        <div class="buttons">
+            <button id="btn0"><span id="choice0"></span></button>
+            <button id="btn1"><span id="choice1"></span></button>
+            <button id="btn2"><span id="choice2"></span></button>
+            <button id="btn3"><span id="choice3"></span></button>
+        </div>
+
+        <hr style="margin-top: 50px">
+        <footer>
+            <p id="progress">Question</p>
+        </footer>
+    </div>
+</div>
