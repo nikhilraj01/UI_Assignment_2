@@ -19,23 +19,186 @@
   </a>
 </div>
 
-<div class="grid">
-    <div id="quiz">
-        <h1>Quiz in JavaScript</h1>
-        <hr style="margin-bottom: 20px">
-
-        <p id="question"></p>
-
-        <div class="buttons">
-            <button id="btn0"><span id="choice0"></span></button>
-            <button id="btn1"><span id="choice1"></span></button>
-            <button id="btn2"><span id="choice2"></span></button>
-            <button id="btn3"><span id="choice3"></span></button>
-        </div>
-
-        <hr style="margin-top: 50px">
-        <footer>
-            <p id="progress">Question </p>
-        </footer>
+<div class="grid" style="padding-bottom: 10px;height: 560px; ">
+  <div id="quiz">
+    <h1 style="margin-top: 20px;">Quiz in JavaScript</h1>
+    <hr style="margin-bottom: 20px">
+    <div id="startBtn" style="display: flex; justify-content: center;">
+      <button style="height: 50px; width: 180px; background-color: grey; margin-bottom: 0px;" onclick="startQuiz()"><span>Start Quiz</span></button>
     </div>
+    <div id="questionContent" style="display: none;">
+      <p style="float: right;"><time>00:00:00</time></p>
+      <p id="progress" style="display: block;">Question</p>
+      <p id="question"></p>
+      <div>
+        <input type="radio" id="ch1" name="options"><span style="font-size: 20px; height:30px;" id="choice1"></span><br>
+        <input type="radio" id="ch2" name="options"><span style="font-size: 20px; height:30px;" id="choice2"></span><br>
+        <input type="radio" id="ch3" name="options"><span style="font-size: 20px; height:30px;" id="choice3"></span><br>
+        <input type="radio" id="ch4" name="options"><span style="font-size: 20px; height:30px;" id="choice4"></span>
+      </div>
+      <hr style="margin-top: 50px">
+      <div style="display: flex; justify-content: space-between; ">
+        <button style="height: 50px; width: 180px; background-color: grey; margin-bottom: 0px;" onclick="prevQues()"><span>&lt;&lt;&lt;Previous</span></button>
+        <button id="submitBtn" style="height: 50px; width: 180px; background-color: grey; margin-bottom: 0px; opacity: 0.6;" onclick="onSubmit()"><span>Submit</span></button>
+        <button style="height: 50px; width: 180px; background-color: grey; margin-bottom: 0px;" onclick="nextQues()"><span>Next&gt;&gt;&gt;</span></button>  
+      </div>  
+    </div> 
+    <div id="resultScreen" style="display: none; justify-content: center; font-size: 30px; text-align: center; ">
+      <p>Thank you for taking this quiz.</p>
+      <p id="timeTaken">Time Taken= </p>
+      <p id="total">Total Questions: </p>
+      <p id="attempted">Questions attempted: </p>
+      <p id="correct">Questions correct: </p>
+      Score=
+    </div>   
+  </div>
 </div>
+
+
+<script>
+var questionsQuiz = [
+  new Question("Inside which HTML element do we put the JavaScript?", ["&lt;scripting>", "&lt;js>", "&lt;javascript>", "&lt;script>"], "&lt;script>"),
+  new Question("How do you write 'Hello World' in an alert box?", ["alert('Hello World')", "msg('Hello World')","msgBox('Hello World')", "alertBox('Hello World')"], "alert('Hello World')"),
+  new Question("How do you create a function in JavaScript?", ["function = myFunction()", "function:myFunction()", "function myFunction()", "myFunction()"], "function myFunction()"),
+  new Question("How do you call a function named 'myFunction'?", ["call function myFunction()", "call myFunction()", "myFunction()", "None of the above"], "myFunction()"),
+  new Question("How to write an IF statement in JavaScript?", ["if i==5 then", "if i=5", "if(i==5)", "if i=5 then"], "if(i==5)")
+  ];
+
+  var ques=document.getElementById("question");
+  var quesNo=document.getElementById("progress");
+  var i=-1;
+  var opt1=document.getElementById("ch1");
+  var opt2=document.getElementById("ch2");
+  var opt3=document.getElementById("ch3");
+  var opt4=document.getElementById("ch4");
+  var submittedAnswers=[];
+  var correctAnswers=[];
+  var content=document.getElementById("questionContent");
+  var startBtn=document.getElementById("startBtn");
+  var result=document.getElementById("resultScreen");
+  
+  function startQuiz()
+  {
+    content.style.display="block";  
+    startBtn.style.display="none";
+    nextQues();  
+  }
+  function nextQues()
+  {
+    submittedAnswers[i]=displayRadioValue();
+    var checkboxes =  document.getElementsByName("options");
+     for(var j=0;j<checkboxes.length;j++) {
+      checkboxes[j].checked = false;
+     }
+    if(i<questionsQuiz.length-1)
+    {
+      i=i+1;
+      ques.innerHTML=questionsQuiz[i].text;
+      choices=questionsQuiz[i].choices;
+      correctAnswers[i]=questionsQuiz[i].answer;
+      opt1.value=choices[0];
+      opt2.value=choices[1];
+      opt3.value=choices[2];
+      opt4.value=choices[3];
+      document.getElementById("choice1").innerHTML=choices[0];
+      document.getElementById("choice2").innerHTML=choices[1];
+      document.getElementById("choice3").innerHTML=choices[2];
+      document.getElementById("choice4").innerHTML=choices[3];   
+      quesNo.innerHTML="Question "+(i+1)+" of " +questionsQuiz.length +":";
+    }
+    else
+    {
+      window.alert("Can't go ahead. You have reached the end of the quiz. Kindly submit your answers.")
+    }
+   
+    var submit=document.getElementById("submitBtn");
+  }
+
+  function prevQues()
+  {
+    if(i>0)
+    {
+      i=i-1;
+      ques.innerHTML=questionsQuiz[i].text;
+      choices=questionsQuiz[i].choices;
+      document.getElementById("ch1").value=choices[0];
+      document.getElementById("ch2").value=choices[1];
+      document.getElementById("ch3").value=choices[2];
+      document.getElementById("ch4").value=choices[3];
+      document.getElementById("choice1").innerHTML=choices[0];
+      document.getElementById("choice2").innerHTML=choices[1];
+      document.getElementById("choice3").innerHTML=choices[2];
+      document.getElementById("choice4").innerHTML=choices[3];   
+      quesNo.innerHTML="Question "+(i+1)+" of 5:";
+    }
+    else
+    {
+      window.alert("Can't go back. You have reached the first question.")
+    }
+  }
+
+  function displayRadioValue()
+  {
+    var ele = document.getElementsByName("options"); 
+    for(j = 0; j < ele.length; j++) 
+    {
+      if(ele[j].checked)
+      {
+        return ele[j].value;
+      }      
+    } 
+  }
+  var score=0;
+  function onSubmit()
+  {
+    document.getElementById("total").innerHTML+=questionsQuiz.length;
+    document.getElementById("attempted").innerHTML+=submittedAnswers.length;
+    clearTimeout(t);
+    score=0;
+    content.style.display="none";
+    result.style.display="block";
+    for(var i=0;i<correctAnswers.length;i++)      
+    {
+      if(submittedAnswers[i]==correctAnswers[i])
+      {
+        score+=1;
+      }
+    }
+    document.getElementById("correct").innerHTML+=score;
+    result.innerHTML+=score+"/"+questionsQuiz.length;
+    var min=Math.floor(t/60);
+    var sec=(t%60);
+    if(min<10)
+    {
+      min="0"+min;
+    }
+    if(sec<10)
+    {
+      sec="0"+sec;
+    }
+    document.getElementById("timeTaken").innerHTML+=min+":"+sec;
+  }
+  var clock = document.getElementsByTagName('p')[0],
+  seconds = 0, minutes = 0, hours = 0,
+  t;
+
+function add() {
+    seconds++;
+    if (seconds >= 60) {
+        seconds = 0;
+        minutes++;
+        if (minutes >= 60) {
+            minutes = 0;
+            hours++;
+        }
+    }
+    
+    clock.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+
+    timer();
+}
+function timer() {
+    t = setTimeout(add, 1000);
+}
+timer();
+</script>

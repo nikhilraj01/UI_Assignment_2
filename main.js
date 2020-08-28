@@ -27,5 +27,3 @@ function openPage(evt, pageName)
   evt.currentTarget.className += " active";  
 }
 
-
-

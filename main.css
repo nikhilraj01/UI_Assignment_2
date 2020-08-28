@@ -55,7 +55,7 @@ h1{
   height: 82%;
   overflow: scroll;
 }
-span{
+.highlight{
   color: red;
   background-color: rgb(230, 230, 230);
 }
@@ -133,11 +133,6 @@ th, td {
   
 }
 
-#score {
-  color: #01BBFF;
-  text-align: center;
-  font-size: 30px;
-}
 
 .grid #question {
   font-family: "monospace";
