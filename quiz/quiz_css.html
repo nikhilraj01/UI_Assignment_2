@@ -3,11 +3,11 @@
   <title>Assignment 2</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="../main.css">
-  <script src="../quiz.js"></script>
+  <script src="../main.js"></script>
 </head>
 
 <body>
-<img src="../w3 logo.jpg" width=25%>
+<img src="../w3 logo.jpg" width="400px" >
 <div class="topnav" id="myTopnav">
   <a href="../index.html">Home</a>
   <a href="../page_html.html">HTML</a>
@@ -21,7 +21,7 @@
 
 <div class="grid" style="padding-bottom: 10px;height: 560px; ">
   <div id="quiz">
-    <h1 style="margin-top: 20px;">Quiz in CSS</h1>
+    <h1 class="quizHeader" style="margin-top: 20px;">Quiz in CSS</h1>
     <hr style="margin-bottom: 20px">
     <div id="startBtn" style="display: flex; justify-content: center;">
       <button style="height: 50px; width: 180px; background-color: grey; margin-bottom: 0px;" onclick="startQuiz()"><span>Start Quiz</span></button>
@@ -31,13 +31,13 @@
       <p id="progress" style="display: block;">Question</p>
       <p id="question"></p>
       <div>
-        <input type="radio" id="ch1" name="options"><span style="font-size: 20px; height:30px;" id="choice1"></span><br>
-        <input type="radio" id="ch2" name="options"><span style="font-size: 20px; height:30px;" id="choice2"></span><br>
-        <input type="radio" id="ch3" name="options"><span style="font-size: 20px; height:30px;" id="choice3"></span><br>
-        <input type="radio" id="ch4" name="options"><span style="font-size: 20px; height:30px;" id="choice4"></span>
+        <input type="radio" id="ch1" onclick="recordAnswer()" name="options"><span style="font-size: 20px; height:30px;" id="choice1"></span><br>
+        <input type="radio" id="ch2" onclick="recordAnswer()" name="options"><span style="font-size: 20px; height:30px;" id="choice2"></span><br>
+        <input type="radio" id="ch3" onclick="recordAnswer()" name="options"><span style="font-size: 20px; height:30px;" id="choice3"></span><br>
+        <input type="radio" id="ch4" onclick="recordAnswer()" name="options"><span style="font-size: 20px; height:30px;" id="choice4"></span>
       </div>
       <hr style="margin-top: 50px">
-      <div style="display: flex; justify-content: space-between; ">
+      <div class="quizButtons" style="display: flex; justify-content: space-between; ">
         <button style="height: 50px; width: 180px; background-color: grey; margin-bottom: 0px;" onclick="prevQues()"><span>&lt;&lt;&lt;Previous</span></button>
         <button id="submitBtn" style="height: 50px; width: 180px; background-color: grey; margin-bottom: 0px;" onclick="onSubmit()"><span>Submit</span></button>
         <button style="height: 50px; width: 180px; background-color: grey; margin-bottom: 0px;" onclick="nextQues()"><span>Next&gt;&gt;&gt;</span></button>  
@@ -61,9 +61,9 @@ var questionsQuiz = [
   new Question("Which property is used to change the background color?", ["bg color", "color","background-color", "background-style"], "background-color"),
   new Question("Which CSS property controls the text size?", ["text-style", "font-style", "size", "font-size"], "font-size"),
   new Question("How do you select an element with id 'demo'?", ["demo", ".demo", "*demo", "#demo"], "#demo")
-  ];
+];
 
-  var ques=document.getElementById("question");
+var ques=document.getElementById("question");
   var quesNo=document.getElementById("progress");
   var i=-1;
   var opt1=document.getElementById("ch1");
@@ -75,20 +75,15 @@ var questionsQuiz = [
   var content=document.getElementById("questionContent");
   var startBtn=document.getElementById("startBtn");
   var result=document.getElementById("resultScreen");
-  
-  
-
+  var checkboxes =  document.getElementsByName("options");
   function startQuiz()
   {
     content.style.display="block";  
     startBtn.style.display="none";
     nextQues();  
   }
-
   function nextQues()
   {
-    submittedAnswers[i]=displayRadioValue();
-    var checkboxes =  document.getElementsByName("options");
      for(var j=0;j<checkboxes.length;j++) {
       checkboxes[j].checked = false;
      }
@@ -107,6 +102,11 @@ var questionsQuiz = [
       document.getElementById("choice3").innerHTML=choices[2];
       document.getElementById("choice4").innerHTML=choices[3];   
       quesNo.innerHTML="Question "+(i+1)+" of " +questionsQuiz.length +":";
+      if(submittedAnswers[i]!=undefined)
+      {
+        var index=choices.indexOf(submittedAnswers[i])
+        checkboxes[index].checked = true;
+      }
     }
     else
     {
@@ -131,12 +131,21 @@ var questionsQuiz = [
       document.getElementById("choice2").innerHTML=choices[1];
       document.getElementById("choice3").innerHTML=choices[2];
       document.getElementById("choice4").innerHTML=choices[3];   
-      quesNo.innerHTML="Question "+(i+1)+" of 5:";
+      quesNo.innerHTML="Question "+(i+1)+" of " +questionsQuiz.length +":";
+      if(submittedAnswers[i]!=undefined)
+      {
+        var index=choices.indexOf(submittedAnswers[i])
+        checkboxes[index].checked = true;
+      }
     }
     else
     {
       window.alert("Can't go back. You have reached the first question.")
     }
+  }
+  function recordAnswer()
+  {
+    submittedAnswers[i]=displayRadioValue();
   }
 
   function displayRadioValue()
@@ -203,4 +212,5 @@ function timer() {
     t = setTimeout(add, 1000);
 }
 timer();
+    
 </script>
