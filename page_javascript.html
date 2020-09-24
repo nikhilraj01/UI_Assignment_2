@@ -1,6 +1,7 @@
 <html>
 <head>
-  <title>Assignment 2</title>
+  <title>Learn Javascript</title>
+  <link rel = "icon" href =  "https://store-images.s-microsoft.com/image/apps.30495.13510798887792718.c58f517f-a070-448d-9f42-44c93b19dcae.05c3b4ed-79d8-4d84-be6d-7d3290f1533e?mode=scale&q=90&h=200&w=200&background=white" type = "image/x-icon"> 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="main.css">
   <script src="main.js"></script>
@@ -22,7 +23,6 @@
   <button class="tablinks active" onclick="openPage(event, 'home')" id="defaultOpen">JS HOME</button>
   <button class="tablinks" onclick="openPage(event, 'intro')" >JS Introduction</button>
   <button class="tablinks" onclick="openPage(event, 'whereTo')">JS Where To</button>
-  <button class="tablinks" onclick="openPage(event, 'output')">JS Output</button>
 </div>
 
 <div id="home" class="tabcontent" style="display: block;" >
@@ -155,12 +155,42 @@
 
 <div id="whereTo" class="tabcontent">
   <h1>JavaScript Where To</h1>
+  <p style="font-size: 30px; ">The &lt;script> Tag</p>
+  In HTML, JavaScript code is inserted between <span  class="highlight">&lt;script></span> and <span  class="highlight"> &lt;/script> </span>tags.
+  <p>The example below "finds" an HTML element (with id="demo"), and changes the element content (innerHTML) to "Hello JavaScript":</p>
+  <div style="background-color: rgb(187, 187, 187);">
+    <p style="font-size: 20px; padding:0px 20px;">Example</p>
+    <img id="myImage" src="images/js_whereto.png" width="95%">
+    <button style="margin: 10px;" 
+    onclick="window.location.href='https://www.w3schools.com/js/tryit.asp?filename=tryjs_whereto';">
+    Try it Yourself >>>
+    </button>     
 </div>
-
-
-
-
-<div id="output" class="tabcontent">
-  <h1>JavaScript Output</h1>
+<p style="font-size: 30px; ">JavaScript Functions and Events</p>
+<p>A JavaScript  <span  class="highlight">function</span> is a block of JavaScript code, that can be executed when "called" for.</p>
+<p>For example, a function can be called when an event occurs, like when the user clicks a button.</p>
+<p style="font-size: 30px; ">JavaScript in &lt;head> or &lt;body></p>
+<p>You can place any number of scripts in an HTML document.</p>
+<p>Scripts can be placed in the <span  class="highlight">&lt;body></span>, or in the <span  class="highlight">&lt;head></span> section of an HTML page, or in both.</p>
+<p style="font-size: 30px; ">JavaScript in &lt;head> </p>
+<p>In this example, a JavaScript <span  class="highlight">function</span> is placed in the <span  class="highlight">&lt;head></span> section of an HTML page.</p>
+<p>The function is invoked (called) when a button is clicked:</p>
+<div style="background-color: rgb(187, 187, 187);">
+  <p style="font-size: 20px; padding:0px 20px;">Example</p>
+  <img src="images/js_whereto1.png" width="95%" style="padding:10px; padding-top: 0px;">
+  <button style="margin-left: 10px;" 
+  onclick="window.location.href='https://www.w3schools.com/js/tryit.asp?filename=tryjs_whereto_head', _blank;">
+  Try it Yourself >>>
+  </button>     
 </div>
-</body>
+<p style="font-size: 30px; ">JavaScript in &lt;body> </p>
+<p>In this example, a JavaScript <span  class="highlight">function</span> is placed in the <span  class="highlight">&lt;body></span> section of an HTML page.</p>
+<p>The function is invoked (called) when a button is clicked:</p>
+<div style="background-color: rgb(187, 187, 187);">
+  <p style="font-size: 20px; padding:0px 20px;">Example</p>
+  <img src="images/js_whereto2.png" width="95%" style="padding:10px; padding-top: 0px;">
+  <button style="margin-left: 10px;" 
+  onclick="window.location.href='https://www.w3schools.com/js/tryit.asp?filename=tryjs_whereto_body', _blank;">
+  Try it Yourself >>>
+  </button>     
+</div>
